@@ -1,0 +1,19 @@
+E120 Classic publishing a cabled analogue Pathfinder scanner over SeaTalkHS.
+Contributed by fakehec in MarineYachtRadar/mayara-server#579, radar
+transmitting (confirmed painting on an a128 and a GPM400).
+
+e120-radar-transmitting.pcap.gz
+  20 s. Beacons on 224.0.0.1:5800 plus the radar service on
+  224.28.237.35:2562, which carries both the reports and the spokes.
+
+  Captured after joining 224.28.237.35 by hand: under IGMP snooping the
+  group reaches nobody who has not joined, and mayara never joined it
+  because the radar never came up.
+
+  This MFD's 0x010006 info report is zero-filled apart from its message
+  id -- no serial, no model -- unlike the 10.0.234.47 unit in the parent
+  directory, which sends the numeric pair 6998394 / 6998352. Both are
+  E-series Classic MFDs digitising an analogue scanner.
+
+  Also present: 10.0.0.1 is mayara 3.12.2 on a Raspberry Pi, sending
+  navdata at 10 Hz and the RD 1 s / 5 s keep-alives.
