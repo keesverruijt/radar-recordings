@@ -1,0 +1,46 @@
+Raymarine Quantum Q24C (E70210) behind a W3 wireless bridge — a Quantum 1.
+Reported by Olivier Hendrikx (inspirity) in MarineYachtRadar/mayara-server#701
+and captured after the fix in #703 made the radar discoverable.
+
+Why this capture matters: it is the first Quantum 1 we have. Every other
+Quantum recording here is an E70498 (Q24D, Quantum 2). It is what confirms
+that 56-byte identity beacon subtype 0x4c is the Quantum 1 identity, where
+0x66 is the Quantum 2 one.
+
+Radar
+  part number   E70210  (Quantum Q24C)
+  serial        0370569
+  link_id       0xCB823937   (W3 bridge: 0xCBC23937)
+  firmware      v1.62
+  features      0x00001900 — doppler false
+  ranges        20, 1/32 to 64 nm
+  identity      56-byte subtype 0x4c, model "QuantumRadar"
+  addresses     report 232.1.155.1:2574, command 198.18.7.66:2575 (the W3)
+  radar IP      192.168.0.155 on the W3's wireless side
+
+Network
+  Axiom MFD     198.18.1.120 / 10.22.6.129, link_id 0xD5608A59
+  W3 bridge     198.18.7.66
+  mayara host   198.18.0.100/21
+  Unmanaged switch, so the Axiom's own commands are NOT in the capture.
+  Radar multicast and mayara's commands are.
+
+Timeline (UTC)
+  21:12:22  capture start, radar off
+  21:12:26  power on
+  21:12:40  through 21:20:17: transmit, range and standby driven by mayara
+  21:21:19  Axiom only from here on; mayara sends keepalives only
+  21:42:12  capture end
+
+The reporter stepped through, about 20 s each: power on, transmit, range in
+to shortest and back out to longest, range 1.5 nm, gain manual min/max then
+auto, sea manual min/max then auto, rain min/max then off, each mode preset
+(Bird absent on this radar) finishing on Harbour, each interference
+rejection level, target expansion on then off, standby, transmit, standby,
+power off.
+
+Control problems the reporter saw from mayara, not yet filed:
+  - sea: auto off accepted but the value stays 0
+  - seaClutterCurve: no reaction
+  - a Doppler command is sent even though doppler=false
+  - gain auto rejected with "Cannot set value for control 'gain'"
