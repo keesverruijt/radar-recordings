@@ -41,9 +41,12 @@ mayara-server issue #839. Mayara's ARPA regression test replays it.
   range B in standby. It starts with a mayara restart, so the beacon
   exchange is in it.
 - `drs4dnxt-anchor-approaching-own-ship.csv`: own-ship position, COG and
-  SOG from Signal K, once a second.
+  SOG from Signal K, once a second, 19:35:19–19:55:59 UTC. Signal K
+  restarted during the capture, so it has no rows from 19:53:51 to
+  19:54:58.
 - `drs4dnxt-anchor-approaching-ais.csv`: every AIS report Signal K received
-  in the window except own ship's, timed when Signal K received it. The
-  two boats are WILD THING 2 (MMSI 228071090) and OHANA II (347019890).
-
-Signal K restarted at 19:53:51–19:54:58, so neither CSV has rows then.
+  except own ship's, timed when Signal K received it. It opens with the
+  last report Signal K held for each vessel when the capture started (61
+  rows, the oldest from 18:04:09), then runs to 19:55:53 UTC. Across the
+  restart it has no rows from 19:53:45 to 19:54:35. The two boats are
+  WILD THING 2 (MMSI 228071090) and OHANA II (347019890).
