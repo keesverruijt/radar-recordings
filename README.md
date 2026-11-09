@@ -50,3 +50,23 @@ mayara-server issue #839. Mayara's ARPA regression test replays it.
   rows, the oldest from 18:04:09), then runs to 19:55:53 UTC. Across the
   restart it has no rows from 19:53:45 to 19:54:35. The two boats are
   WILD THING 2 (MMSI 228071090) and OHANA II (347019890).
+
+## furuno/moin/drs4dnxt-anchor-guard-zone*
+
+The same DRS4D-NXT at the same anchorage, 2026-10-29 17:42:43–17:45:35 UTC,
+with a guard zone all round, for mayara-server issues #848 and #849. No AIS
+vessel within 6 km moved faster than 1 kn. Recorded on the Raspberry Pi
+that runs mayara.
+
+- `drs4dnxt-anchor-guard-zone.pcap.gz`: everything to and from the radar,
+  the NavNet broadcasts and the spoke multicast; 0 packets dropped. Range A
+  at 1.5 NM with Target Analyzer off, ARPA Max Speed Medium, Doppler Auto
+  Track on and guard zone 1 all round from 300 to 2,500 m; range B in
+  standby. It starts with a mayara restart, so the beacon exchange is in
+  it, and ends at 17:45:35, a second before Target Analyzer went back on.
+- `drs4dnxt-anchor-guard-zone-own-ship.csv`: own-ship position, COG and
+  SOG from Signal K, once a second, 17:42:45–17:46:30 UTC.
+- `drs4dnxt-anchor-guard-zone-ais.csv`: every AIS report Signal K held
+  except own ship's, timed by the report's position timestamp, so it opens
+  with reports from before the capture. KIAPA NUI (MMSI 367589460) lies
+  141 m off and MMSI 368383510 383 m off; both report every three minutes.
